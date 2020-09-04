@@ -11,23 +11,29 @@
       <label for="name">Name:</label>
       <input type="text" class="form-control" formControlName="name">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label >Department</label>
-      <!-- <input type="text" class="form-control" formControlName="mobileno"> -->
       <ng-multiselect-dropdown
       [placeholder]="'custom placeholder'" [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
       (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" [required]='requiredField' [ngClass]='setClass()'
       name='countrySelect'>
      </ng-multiselect-dropdown>
-    </div>
+    </div> -->
+    <!-- <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems"
+    [settings]="dropdownSettings"
+    (onSelect)="onItemSelect($event)"
+    (onDeSelect)="OnItemDeSelect($event)"
+    [selectedItems]="selectedItems"
+    (onSelectAll)="onSelectAll($event)"
+    (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect> -->
     <div class="form-group">
-      <label for="phonenumber">isActive</label>
-      <input type="number" class="form-control" formControlName="">
+      <label>Status</label><br>
+      <mat-slide-toggle formControlName="isActive">isActive</mat-slide-toggle>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-info" (click)= "onSubmit(this.EmpForm.value)">Submit</button>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button mat-dialog-close  class= "btn btn-danger" (click)="onCancle()">Cancel</button>
+
 </mat-dialog-actions>

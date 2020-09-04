@@ -1,2 +1,24 @@
 <button  type="button" class="btn btn-warning" (click)="openDialog()">Add</button>
 
+
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody  *ngFor =" let emp of EmployeList let i = index">
+    <tr>
+      <td>{{emp?.id}}</td>
+      <td>{{emp?.name}}</td>
+      <td><button  class= "btn btn-info" (click)= "onEdit(emp)">Edit</button> &nbsp;
+        <button (click)= "onDelete(emp.id)" class= "btn btn-danger">Delete</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

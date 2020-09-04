@@ -1,6 +1,9 @@
-import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { CommonService } from './../common.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Output, Input, EventEmitter, Inject  } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+
 @Component({
   selector: 'app-employe',
   templateUrl: './employe.component.html',
@@ -11,64 +14,47 @@ export class EmployeComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {};
   requiredField = false;
-  constructor(public dialog: MatDialog) { }
+  EmpForm: FormGroup;
 
-  EmpForm = new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl(''),
-    isactive: new FormControl(''),
 
+  constructor( public dialog: MatDialog,
+               private commonsevices: CommonService,
+               private formBuilder: FormBuilder)
+      {
+    this.buildEmployeForm();
+   }
+
+
+ private buildEmployeForm(){
+  this.EmpForm = this.formBuilder.group({
+    id: [''],
+    name: [''],
+    isActive: ['']
   });
-
+}
 
 
   ngOnInit(): void {
 
-    this.dropdownList = [
-      { "item_id": 1, "item_text": "India" },
-      { "item_id": 2, "item_text": "India" },
-      { "item_id": 3, "item_text": "India" },
-      { "item_id": 4, "item_text": "India" },
-    ];
-
-    // this.selectedItems = [
-    //   { item_id: 2, item_text: 'Singapore' },
-    //   { item_id: 3, item_text: 'Australia' }
-    // ];
-
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
-    this.setStatus();
-  }
-  setStatus() {
-    (this.selectedItems.length > 0) ? this.requiredField = true : this.requiredField = false;
+    this.commonsevices.EmployeFormData.subscribe(data => {
+      if (data){
+        console.log(data);
+        this.EmpForm.patchValue({
+          name: data.name,
+        });
+      }
+    });
   }
 
-  onItemSelect(item: any) {
-    // Do something if required
-    this.setClass();
-  }
-  onSelectAll(items: any) {
-    // Do something if required
-    this.setClass();
+  onCancle() {
+    this.dialog.closeAll();
+    this.commonsevices.EmployeFormData.next(undefined);
   }
 
-  setClass() {
-    this.setStatus();
-    if (this.selectedItems.length > 0) { return 'validField'; }
-    else { return 'invalidField'; }
+  onSubmit(val: any) {
+    this.commonsevices.EmployeFormData.next(val);
+    this.EmpForm.reset();
+    this.onCancle();
   }
-  submission() {
-    if (this.requiredField == false) {
-      /* Print a message that not all required fields were filled... */
-    }
-    /* Do form submission... */
-  }
+
 }

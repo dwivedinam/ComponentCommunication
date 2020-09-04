@@ -1,0 +1,24 @@
+<h3> Parent Component @ViewChild
+
+</h3> Number Example:
+ <button type="button" (click)="increase()">Increase</button>
+ <button type="button" (click)="decrease()">Decrease</button> <br/><br/>
+ <h3 > @ViewChild with Template Variable using ElementRef to access Native Element </h3>
+
+
+<app-child-c ></app-child-c>
+
+<h3>@ViewChild using Directive</h3>
+Color Example:
+<p cpColor>Change my Color </p>
+<div>
+  Change Color:
+  <input type="radio" name="rad" (click)= "changeColor('green')"> Green
+  <input type="radio" name="rad" (click)= "changeColor('cyan')"> Cyan
+  <input type="radio" name="rad" (click)= "changeColor('blue')"> Blue
+</div>
+
+<h3>@ViewChild with Template Variable using ElementRef to access Native Element </h3>
+<div>
+   Name: <input type="text" #name> <br/>
+</div>

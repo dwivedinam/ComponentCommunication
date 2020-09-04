@@ -1,0 +1,54 @@
+<!-- <mat-toolbar class="nav-bar">
+  <mat-toolbar-row>
+    <span style="cursor: pointer" (click)="drawer.toggle()"><i class="material-icons">
+        dehaze
+        </i></span>
+    <span class="example-spacer"></span>
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example heart icon"
+      >favorite</mat-icon
+    >
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example delete icon"
+      >delete</mat-icon
+    >
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode=side>
+          <mat-action-list>
+                  <button mat-raised-button routerLink='/details'>Users</button><br><br>
+                  <button mat-raised-button (click)="onBook()">Book</button><br><br>
+                  <button mat-raised-button routerLink="/Bag">Bag</button><br><br>
+                  <button mat-raised-button routerLink="/deparment">department</button>
+          </mat-action-list>
+  </mat-drawer>
+  <mat-drawer-content>
+      <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+ -->
+
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Tutorials</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="col-md-12"><a routerLink="./html">HTML</a></li>
+        <li class="col-md-12"><a routerLink="./css">CSS</a></li>
+        <li class="col-md-12"><a routerLink="./javascript">JavaScript</a></li>
+        <li class="col-md-12"><a routerLink="./angularjs">AngularJS</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
